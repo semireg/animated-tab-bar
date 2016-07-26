@@ -309,17 +309,12 @@ public class RAMAnimatedTabBarController: UITabBarController {
       container.addSubview(textLabel)
       let textLabelWidth = tabBar.frame.size.width / CGFloat(items.count) - 5.0
       createConstraints(textLabel, container: container, size: CGSize(width: textLabelWidth , height: 10), yOffset: 16 - item.yOffSet)
-      
+        
       if item.enabled == false {
         icon.alpha      = 0.5
         textLabel.alpha = 0.5
       }
       item.iconView = (icon:icon, textLabel:textLabel)
-      
-      if 0 == index { // selected first elemet
-        item.selectedState()
-        container.backgroundColor = (items as [RAMAnimatedTabBarItem])[index].bgSelectedColor
-      }
       
       item.image = nil
       item.title = ""
