@@ -299,6 +299,7 @@ public class RAMAnimatedTabBarController: UITabBarController {
       textLabel.font = item.textFont
       textLabel.textAlignment = NSTextAlignment.Center
       textLabel.translatesAutoresizingMaskIntoConstraints = false
+      textLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, forAxis: UILayoutConstraintAxis.Vertical)
       
       container.backgroundColor = (items as [RAMAnimatedTabBarItem])[index].bgDefaultColor
       
@@ -335,7 +336,7 @@ public class RAMAnimatedTabBarController: UITabBarController {
                                     attribute: NSLayoutAttribute.CenterX,
                                     multiplier: 1,
                                     constant: 0)
-    container.addConstraint(constX)
+    constX.active = true
     
     let constY = NSLayoutConstraint(item: view,
                                     attribute: NSLayoutAttribute.CenterY,
@@ -344,7 +345,7 @@ public class RAMAnimatedTabBarController: UITabBarController {
                                     attribute: NSLayoutAttribute.CenterY,
                                     multiplier: 1,
                                     constant: yOffset)
-    container.addConstraint(constY)
+    constY.active = true
     
     let constW = NSLayoutConstraint(item: view,
                                     attribute: NSLayoutAttribute.Width,
@@ -353,7 +354,7 @@ public class RAMAnimatedTabBarController: UITabBarController {
                                     attribute: NSLayoutAttribute.NotAnAttribute,
                                     multiplier: 1,
                                     constant: size.width)
-    view.addConstraint(constW)
+    constW.active = true
     
     let constH = NSLayoutConstraint(item: view,
                                     attribute: NSLayoutAttribute.Height,
@@ -362,7 +363,8 @@ public class RAMAnimatedTabBarController: UITabBarController {
                                     attribute: NSLayoutAttribute.NotAnAttribute,
                                     multiplier: 1,
                                     constant: size.height)
-    view.addConstraint(constH)
+    constH.priority = 999
+    constH.active = true
   }
   
   private func createViewContainers() -> NSDictionary {
