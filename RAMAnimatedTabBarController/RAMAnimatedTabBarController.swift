@@ -457,14 +457,14 @@ public class RAMAnimatedTabBarController: UITabBarController {
             
             let selectedItem = items[selectedIndex]
             
-            if oldValue >= items.count {
+            if oldValue >= items.count { // This is the first selection from a newly init'd tab bar contorller
                 // Initial set
                 if let container = selectedItem.iconView?.icon.superview {
                     container.backgroundColor = selectedItem.bgSelectedColor
                     delegate?.tabBarController?(self, didSelectViewController: self.childViewControllers[selectedIndex])
                 }
                 
-            } else if selectedIndex != oldValue {
+            } else if selectedIndex != oldValue { // This is a vanilla tab selection
                 let deselectItem = items[oldValue]
                 
                 selectedItem.playAnimation()
@@ -479,7 +479,8 @@ public class RAMAnimatedTabBarController: UITabBarController {
                 
                 delegate?.tabBarController?(self, didSelectViewController: self.childViewControllers[selectedIndex])
                 
-            } else if selectedIndex == oldValue {
+                
+            } else if selectedIndex == oldValue {  // This is a lazy kind of double-tap on the already selected tab bar item
                 let selectedVC = viewControllers![selectedIndex]
                 var VCs:[UIViewController] = [selectedVC]
                 
