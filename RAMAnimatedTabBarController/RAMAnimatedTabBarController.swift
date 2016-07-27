@@ -258,8 +258,8 @@ public class RAMAnimatedTabBarController: UITabBarController {
             return
         }
         
+        selectedIndex = 0
         let containers = self.createViewContainers()
-        
         self.createCustomIcons(containers)
     }
     
