@@ -481,8 +481,17 @@ public class RAMAnimatedTabBarController: UITabBarController {
                 delegate?.tabBarController?(self, didSelectViewController: self.childViewControllers[selectedIndex])
                 
             } else if selectedIndex == oldValue {
-                if let navVC = self.viewControllers![selectedIndex] as? UINavigationController {
-                    navVC.popToRootViewControllerAnimated(true)
+                let selectedVC = viewControllers![selectedIndex]
+                var VCs:[UIViewController] = [selectedVC]
+                
+                if let splitVC = selectedVC as? UISplitViewController {
+                    VCs.appendContentsOf(splitVC.viewControllers)
+                }
+                
+                for vc in VCs {
+                    if let navVC = vc as? UINavigationController {
+                        navVC.popToRootViewControllerAnimated(true)
+                    }
                 }
             }
         }
