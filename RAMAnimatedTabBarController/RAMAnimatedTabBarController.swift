@@ -433,8 +433,7 @@ public class RAMAnimatedTabBarController: UITabBarController {
     }
     
     let currentIndex = gestureView.tag
-    
-    if items[currentIndex].enabled == false { return }
+    guard items[currentIndex].enabled == true else { return }
     
     let controller = self.childViewControllers[currentIndex]
     
